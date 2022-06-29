@@ -1,15 +1,18 @@
 const express = require('express');
-const productsRoute = require('./routes/products');
+const productsController = require('./controllers/productsController');
+// const productsRoute = require('./routes/products');
 
 const app = express();
-app.use(express.json());
 
 // não remova esse endpoint, é para o avaliador funcionar
 app.get('/', (_request, response) => {
   response.send();
 });
 
-app.use('/products', productsRoute);
+app.use(express.json());
+// app.use('/products', productsRoute);
+app.get('/products', productsController.getAll);
+app.get('/products/:id', productsController.getById);
 
 app.use((err, req, res, _next) => {
   const { message, name } = err;
