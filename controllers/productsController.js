@@ -11,6 +11,14 @@ const productsController = {
     const data = await productsService.getById(id);
     res.status(200).json(data);
   },
+
+  create: async (req, res) => {
+    const { name } = req.body;
+    await productsService.checkIfExists(name);
+    const id = await productsService.create(name);
+    const item = await productsService.getById(id);
+    res.status(201).json(item);
+  },
 };
 
 module.exports = productsController;
