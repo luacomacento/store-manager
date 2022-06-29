@@ -1,6 +1,5 @@
 const express = require('express');
-const productsController = require('./controllers/productsController');
-// const productsRoute = require('./routes/products');
+const productsRoute = require('./routes/products');
 
 const app = express();
 
@@ -10,9 +9,7 @@ app.get('/', (_request, response) => {
 });
 
 app.use(express.json());
-// app.use('/products', productsRoute);
-app.get('/products', productsController.getAll);
-app.get('/products/:id', productsController.getById);
+app.use('/products', productsRoute);
 
 app.use((err, req, res, _next) => {
   const { message, name } = err;
