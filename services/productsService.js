@@ -24,6 +24,14 @@ const productsService = {
     const id = await Products.create(name);
     return id;
   },
+
+  update: async (id, name, quantity) => {
+    await Products.update(id, name, quantity);
+  },
+
+  delete: async (id) => {
+    await Products.delete(id);
+  },
 };
 
 module.exports = productsService;

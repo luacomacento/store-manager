@@ -24,6 +24,16 @@ const Products = {
     const [{ insertId }] = await db.query(sql, [name]);
     return insertId;
   },
+
+  update: async (id, name) => {
+    const sql = 'UPDATE StoreManager.products SET name = ? WHERE id = ?';
+    await db.query(sql, [name, id]);
+  },
+
+  delete: async (id) => {
+    const sql = 'DELETE FROM StoreManager.products WHERE id = ?';
+    await db.query(sql, [id]);
+  },
 };
 
 module.exports = Products;
