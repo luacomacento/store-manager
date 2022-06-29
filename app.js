@@ -1,5 +1,6 @@
 const express = require('express');
 const productsRoute = require('./routes/products');
+const salesRoute = require('./routes/sales');
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.get('/', (_request, response) => {
 
 app.use(express.json());
 app.use('/products', productsRoute);
+app.use('/sales', salesRoute);
 
 app.use((err, req, res, _next) => {
   const { message, name } = err;
