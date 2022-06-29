@@ -16,6 +16,12 @@ app.use((err, req, res, _next) => {
   switch (name) {
     case 'NotFoundError':
       return res.status(404).json({ message });
+    case 'ConflictError':
+      return res.status(409).json({ message });
+    case 'UnprocessableError':
+      return res.status(422).json({ message });
+    case 'BadRequestError':
+      return res.status(400).json({ message });
     default:
       return res.status(500).json({ message });
   }

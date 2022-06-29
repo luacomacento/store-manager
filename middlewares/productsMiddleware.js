@@ -5,7 +5,6 @@ const UnprocessableError = require('../errors/UnprocessableError');
 const validateBody = (req, res, next) => {
   const schema = Joi.object({
     name: Joi.string().required().min(5),
-    quantity: Joi.number().required().integer().min(1),
   });
 
   const { error } = schema.validate(req.body);
