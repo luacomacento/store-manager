@@ -24,6 +24,12 @@ const Sales = {
     const [rows] = await db.query(sql, [id]);
     return rows;
   },
+
+  create: async () => {
+    const sql = 'insert into StoreManager.sales (date) values (now())';
+    const [{ insertId }] = await db.query(sql);
+    return insertId;
+  },
 };
 
 module.exports = Sales;
