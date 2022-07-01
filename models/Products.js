@@ -22,17 +22,20 @@ const Products = {
   create: async (name) => {
     const sql = 'INSERT INTO StoreManager.products (name) VALUES (?)';
     const [{ insertId }] = await db.query(sql, [name]);
+    if (!insertId) throw new Error('Failed to create product');
     return insertId;
   },
 
   update: async (id, name) => {
     const sql = 'UPDATE StoreManager.products SET name = ? WHERE id = ?';
-    await db.query(sql, [name, id]);
+    const [{ affectedRows }] = await db.query(sql, [name, id]);
+    return !!affectedRows;
   },
 
   delete: async (id) => {
     const sql = 'DELETE FROM StoreManager.products WHERE id = ?';
-    await db.query(sql, [id]);
+    const [{ affectedRows }] = await db.query(sql, [id]);
+    return !!affectedRows;
   },
 };
 

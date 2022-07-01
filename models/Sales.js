@@ -28,12 +28,14 @@ const Sales = {
   create: async () => {
     const sql = 'insert into StoreManager.sales (date) values (now())';
     const [{ insertId }] = await db.query(sql);
+    if (!insertId) throw new Error('Failed to create sale');
     return insertId;
   },
 
   delete: async (id) => {
     const sql = 'DELETE FROM StoreManager.sales WHERE id = ?';
-    await db.query(sql, [id]);
+    const [{ affectedRows }] = await db.query(sql, [id]);
+    return !!affectedRows;
   },
 };
 
