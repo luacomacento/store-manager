@@ -22,6 +22,16 @@ const salesController = {
     res.status(201).json({ id, itemsSold: sale });
   },
 
+  // update: async (req, res) => {
+  //   const sale = req.body;
+  //   const { id } = req.params;
+  //   await salesService.getById(id);
+  //   await salesService.update(id, sale);
+  //   res.status(201).json({ id, itemsUpdated: sale });
+  //   // const item = await salesService.getById(id);
+  //   // res.status(200).json(item);
+  // },
+
   delete: async (req, res) => {
     const { id } = req.params;
     await salesService.getById(id);

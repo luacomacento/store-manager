@@ -20,6 +20,10 @@ const salesService = {
     return id;
   },
 
+  // update: async (id, sale) => {
+  //   // await Promise.all(sale.map((product) => SalesProd      ucts.update(id, product)));
+  // },
+
   delete: async (id) => {
     await Sales.delete(id);
   },
