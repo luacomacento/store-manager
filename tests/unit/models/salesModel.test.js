@@ -57,13 +57,13 @@ describe("models/Sales", () => {
         .rejected;
     });
 
-    it("should throw if connection doesn't return insertId", async () => {
+    it("should throw if connection doesn't return affectedRows", async () => {
       sinon.stub(db, "query").resolves([{ invalidKey: 1 }]);
       return chai.expect(salesModel.create("test")).to.eventually.be
         .rejected;
     });
 
-    it("should return id if connection returns insertId", async () => {
+    it("should return affectedRows if connection returns affectedRows", async () => {
       const mockedData = { insertId: 1 };
       const { insertId } = mockedData;
       sinon.stub(db, "query").resolves([mockedData]);

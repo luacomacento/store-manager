@@ -25,13 +25,13 @@ describe("models/SalesProducts", () => {
       ).to.eventually.be.rejected;
     });
 
-    it("should return id if connection returns insertId", async () => {
-      const mockedData = { insertId: 1 };
-      const { insertId } = mockedData;
+    it("should return true if connection returns affectedRows", async () => {
+      const mockedData = { affectedRows: 1 };
+      const { affectedRows } = mockedData;
       sinon.stub(db, "query").resolves([mockedData]);
       return chai
         .expect(salesProductsModel.create(1, { productId: 2, quantity: 3 }))
-        .to.eventually.equal(insertId);
+        .to.eventually.equal(true);
     });
   });
 });
