@@ -32,6 +32,11 @@ const productsService = {
   delete: async (id) => {
     await Products.delete(id);
   },
+
+  search: async (name) => {
+    const data = await Products.search(name);
+    return data;
+  },
 };
 
 module.exports = productsService;
