@@ -23,16 +23,17 @@ const productsController = {
   update: async (req, res) => {
     const { name, quantity } = req.body;
     const { id } = req.params;
-    await productsService.getById(id);
-    await productsService.update(id, name, quantity);
+    await Promise.all([
+      productsService.getById(id),
+      productsService.update(id, name, quantity),
+    ]);
     const item = await productsService.getById(id);
     res.status(200).json(item);
   },
 
   delete: async (req, res) => {
     const { id } = req.params;
-    await productsService.getById(id);
-    await productsService.delete(id);
+    await Promise.all([productsService.getById(id), productsService.delete(id)]);
     res.status(204).end();
   },
 

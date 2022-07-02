@@ -25,18 +25,19 @@ const salesController = {
   update: async (req, res) => {
     const sale = req.body;
     const { id } = req.params;
-    await Promise.all(
-      sale.map(({ productId }) => productsService.getById(productId)),
-    );
-    await salesService.getById(id);
-    await salesService.update(id, sale);
+    await Promise.all([
+      ...sale.map(({ productId }) => productsService.getById(productId)),
+      salesService.getById(id),
+      salesService.update(id, sale),
+    ]);
     res.status(200).json({ saleId: id, itemsUpdated: sale });
   },
 
   delete: async (req, res) => {
     const { id } = req.params;
-    await salesService.getById(id);
-    await salesService.delete(id);
+    await Promise.all([salesService.getById(id), salesService.delete(id)]);
+    // await salesService.getById(id);
+    // await salesService.delete(id);
     res.status(204).end();
   },
 };
