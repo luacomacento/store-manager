@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "REST API",
-    "description": "",
+    "title": "Store Manager",
+    "description": "A Node.js/Express.js RESTful API for a store managing system, where one can create, read, update and delete informations about products and sales in a MySQL database.    ",
     "version": "1.0.0"
   },
   "servers": [
