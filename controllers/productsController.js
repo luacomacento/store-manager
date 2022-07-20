@@ -13,6 +13,7 @@ const productsController = {
   },
 
   create: async (req, res) => {
+    // const { name } = await productsService.validateBody(req.body);
     const { name } = req.body;
     await productsService.checkIfExists(name);
     const id = await productsService.create(name);
@@ -21,6 +22,7 @@ const productsController = {
   },
 
   update: async (req, res) => {
+    // const { name, quantity } = await productsService.validateBody(req.body);
     const { name, quantity } = req.body;
     const { id } = req.params;
     await Promise.all([

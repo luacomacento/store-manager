@@ -2,11 +2,11 @@ const Joi = require('joi');
 const BadRequestError = require('../errors/BadRequestError');
 const UnprocessableError = require('../errors/UnprocessableError');
 
-const validateBody = (req, res, next) => {
+const validateSalesBody = (req, res, next) => {
   const schema = Joi.array().items(
     Joi.object({
-      productId: Joi.number().required().integer(),
-      quantity: Joi.number().required().integer().min(1),
+      productId: Joi.number().integer().required(),
+      quantity: Joi.number().integer().min(1).required(),
     }),
   );
 
@@ -29,4 +29,4 @@ const validateBody = (req, res, next) => {
   next();
 };
 
-module.exports = { validateBody };
+module.exports = { validateSalesBody };

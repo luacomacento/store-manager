@@ -14,6 +14,7 @@ const salesController = {
   },
 
   create: async (req, res) => {
+    // const sale = await salesService.validateBody(req.body);
     const sale = req.body;
     await Promise.all(
       sale.map(({ productId }) => productsService.getById(productId)),
@@ -23,7 +24,8 @@ const salesController = {
   },
 
   update: async (req, res) => {
-    const sale = req.body;
+    // const sale = await salesService.validateBody(req.body);
+    const sale = await req.body;
     const { id } = req.params;
     await Promise.all([
       ...sale.map(({ productId }) => productsService.getById(productId)),

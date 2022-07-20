@@ -1,17 +1,20 @@
 const express = require('express');
+const swaggerUi = require('swagger-ui-express');
 const productsRoute = require('./routes/products');
 const salesRoute = require('./routes/sales');
+const swaggerDocument = require('./swagger_output.json');
 
 const app = express();
 
 // não remova esse endpoint, é para o avaliador funcionar
 app.get('/', (_request, response) => {
-  response.send();
+ response.send();
 });
 
 app.use(express.json());
 app.use('/products', productsRoute);
 app.use('/sales', salesRoute);
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use((err, req, res, _next) => {
   const { message, name } = err;

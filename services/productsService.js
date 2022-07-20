@@ -1,5 +1,8 @@
+const Joi = require('joi');
+const BadRequestError = require('../errors/BadRequestError');
 const ConflictError = require('../errors/ConflictError');
 const NotFoundError = require('../errors/NotFoundError');
+const UnprocessableError = require('../errors/UnprocessableError');
 const Products = require('../models/Products');
 require('express-async-errors');
 
@@ -36,6 +39,26 @@ const productsService = {
   search: async (name) => {
     const data = await Products.search(name);
     return data;
+  },
+
+  validateBody: async (body) => {
+    const schema = Joi.object({
+      name: Joi.string().required().min(5),
+    });
+  
+    const { error, value } = schema.validate(body);
+  
+    if (error) {
+      const {
+        details: {
+          0: { type, message },
+        },
+      } = error;
+      if (type.includes('.min')) throw new UnprocessableError(message);
+      throw new BadRequestError(message);
+    }
+
+    return value;
   },
 };
 
