@@ -1,6 +1,6 @@
 # :shopping: Store Manager
 
-<div align="center"></div>
+<div align="center"><img src="preview.png" /></div>
 
 ## About:
 <p>A Node.js/Express.js RESTful API for a store managing system, where one can create, read, update and delete informations about products and sales in a MySQL database.</p>
@@ -19,6 +19,9 @@
   <li>Docker</li>
   <li>MySQL</li>
 </ul>
+
+## Documentation:
+The full API documentation can be accessed through the route /docs
 
 ## API Routes:
 
