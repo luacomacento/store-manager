@@ -14,7 +14,11 @@ app.get('/', (_request, response) => {
 app.use(express.json());
 app.use('/products', productsRoute);
 app.use('/sales', salesRoute);
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
+  swaggerOptions: {
+    defaultModelsExpandDepth: -1,
+  },
+}));
 
 app.use((err, req, res, _next) => {
   const { message, name } = err;
