@@ -37,6 +37,7 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: password
       MYSQL_HOST: db # Nome do service logo abaixo
+      MYSQL_DATABASE: StoreManager
       PORT: '3000'
 
   # Serviço que irá rodar o banco de dados
